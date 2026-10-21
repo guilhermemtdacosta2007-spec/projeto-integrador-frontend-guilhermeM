@@ -39,7 +39,64 @@ a:active { color: var(--cor-acento); }
   outline-offset: 2px;
 }
 
-#titulo-principal { margin: 0 0 1rem; font-size: 1.8rem; }
+/* ===== AULA 8: header, navbar com Flexbox, sticky, dropdown e hambúrguer ===== */
+.topo {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--espaco);
+  padding: 0.75rem 1.5rem;
+  background: var(--cor-primaria);
+  color: #ffffff;
+}
+.marca { display: flex; align-items: center; gap: 0.75rem; }
+.logo { flex-shrink: 0; }
+#titulo-principal { margin: 0; font-size: 1.5rem; }
+
+.menu { display: flex; gap: 0.25rem; margin: 0; padding: 0; list-style: none; }
+/* Combinador de filho direto (>): só os <li> do primeiro nível precisam de
+   position: relative; os <li> do submenu não devem ser afetados. */
+.menu > li { position: relative; }
+.menu a:link, .menu a:visited {
+  display: block;
+  padding: 0.6rem 1rem;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 6px;
+}
+.menu a:hover, .menu a:focus-visible { background: var(--cor-secundaria); color: #ffffff; }
+.menu a.ativo { background: rgba(255, 255, 255, 0.2); font-weight: 700; }
+
+/* Dropdown sem "buraco": top: 100% encosta o submenu no item pai */
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 12rem;
+  margin: 0;
+  padding: 0.25rem 0;
+  list-style: none;
+  background: var(--cor-primaria);
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+.dropdown:hover .submenu,
+.dropdown:focus-within .submenu { display: block; }
+
+.botao-menu {
+  display: none;
+  padding: 0.4rem 0.5rem;
+  background: transparent;
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.botao-menu span { display: block; width: 1.5rem; height: 3px; margin: 4px 0; background: #ffffff; }
 
 /* ===== AULA 7: Grid de página com áreas nomeadas ===== */
 main {
@@ -139,4 +196,8 @@ canvas {
     grid-template-columns: 1fr;
     grid-template-areas: "inicio" "etapas" "dados" "graficos" "midia" "analise" "contato";
   }
+  .botao-menu { display: block; }
+  nav { width: 100%; }
+  .menu { flex-direction: column; }
+  .submenu { position: static; display: block; padding-left: 1rem; box-shadow: none; }
 }
