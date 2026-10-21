@@ -9,6 +9,12 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <!--
+    AULA 8 - Diagnóstico de empilhamento (confirme no DevTools, painel Elements/Layout):
+    o dropdown aparecia atrás dos .card porque o card, ao receber :hover, usa transform
+    e cria um contexto de empilhamento próprio. O header sticky com z-index: 10 cria um
+    contexto acima dos cards, e o dropdown (filho do header) fica por cima de todos.
+  -->
   <header class="topo">
     <div class="marca">
       <!-- AULA 5: SVG inline com viewBox e nome acessível.
@@ -23,10 +29,23 @@
       <h1 id="titulo-principal">DataLab Vendas</h1>
     </div>
 
+    <!-- AULA 8: botão hambúrguer só estrutural (sem clique ainda) -->
+    <button class="botao-menu" type="button" aria-label="Abrir menu de navegação" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
     <nav aria-label="Navegação principal">
       <ul class="menu">
-        <li><a href="#inicio">Início</a></li>
+        <li><a class="ativo" href="#inicio" aria-current="location">Início</a></li>
         <li><a href="#dados">Dados</a></li>
+        <li class="dropdown">
+          <a href="#graficos">Análises</a>
+          <ul class="submenu">
+            <li><a href="#graficos">Gráfico animado</a></li>
+            <li><a href="#midia">Vídeo</a></li>
+            <li><a href="#analise">Analisador</a></li>
+          </ul>
+        </li>
         <li><a href="#contato">Contato</a></li>
       </ul>
     </nav>
