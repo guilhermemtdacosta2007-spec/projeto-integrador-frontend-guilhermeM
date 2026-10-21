@@ -69,6 +69,20 @@
       </div>
     </section>
 
+    <section id="midia">
+      <h2>Vídeo demonstrativo</h2>
+      <!-- AULA 4: preload="metadata" porque o vídeo está no meio da página: carrega só duração
+           e dimensões, sem gastar dados de quem não for assistir. Ordem dos <source>: WebM
+           (menor, mais eficiente) primeiro e MP4 como fallback universal. -->
+      <video id="video-demo" controls preload="metadata" poster="assets/images/poster.png" width="640" height="360">
+        <source src="assets/media/demo.webm" type="video/webm">
+        <source src="assets/media/demo.mp4" type="video/mp4">
+        <track kind="subtitles" src="assets/media/legendas-pt.vtt" srclang="pt" label="Português" default>
+        <p>Seu navegador não suporta vídeo. <a href="assets/media/demo.mp4">Baixe o arquivo MP4</a>.</p>
+      </video>
+      <p><small id="aviso-formato"></small></p>
+    </section>
+
     <section id="contato">
       <h2>Peça uma análise</h2>
       <form action="#" method="post">
@@ -127,5 +141,6 @@
     <p>DataLab Vendas - Projeto Integrador de Front-end. <a href="#inicio">Voltar ao topo</a></p>
   </footer>
 
+  <script src="js/midia.js" defer></script>
 </body>
 </html>
