@@ -1,1 +1,95 @@
-/* style.css - criado na Aula 2; será preenchido na Aula 6 */
+/* ===== AULA 6: variáveis (reutilizadas em cores, espaçamento, raio e transição) ===== */
+:root {
+  --cor-primaria: #1f4e79;
+  --cor-secundaria: #2e75b6;
+  --cor-fundo: #f4f7fb;
+  --cor-card: #ffffff;
+  --cor-texto: #1f2937;
+  --cor-acento: #ff8c00;
+  --espaco: 1rem;
+  --raio-card: 10px;
+  --transicao-padrao: transform 0.2s ease, background-color 0.2s ease;
+}
+
+/* Todo font-size usa rem (e não px) para respeitar o tamanho de fonte que a pessoa
+   escolheu no navegador, o que ajuda quem precisa de texto maior (acessibilidade). */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: system-ui, "Segoe UI", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--cor-texto);
+  background: var(--cor-fundo);
+}
+
+h2 { font-size: 1.4rem; margin-top: 0; }
+h3 { font-size: 1.1rem; margin-top: 0; }
+
+/* Links: ordem LoVe/HAte (link, visited, hover, active) */
+a:link { color: var(--cor-secundaria); }
+a:visited { color: #5b3f8c; }
+a:hover { color: var(--cor-primaria); text-decoration: underline; }
+a:active { color: var(--cor-acento); }
+
+/* AULA 9 (guia): foco sempre visível em links, botões e campos */
+:focus-visible {
+  outline: 3px solid var(--cor-acento);
+  outline-offset: 2px;
+}
+
+#titulo-principal { margin: 0 0 1rem; font-size: 1.8rem; }
+
+/* Filho direto (>): estiliza só as seções de primeiro nível da página */
+main > section {
+  min-width: 0;
+  padding: 1.5rem;
+  background: var(--cor-card);
+  border: 1px solid #d9e2ec;
+  border-radius: var(--raio-card);
+}
+
+.destaque {
+  padding: 0.75rem 1rem;
+  border-left: 4px solid var(--cor-acento);
+  background: #fff4e5;
+  font-weight: 600;
+}
+
+/* Box model explícito: padding, border e margin */
+.card {
+  position: relative;
+  margin: 0;
+  padding: 1rem 1.25rem;
+  background: var(--cor-card);
+  border: 2px solid var(--cor-secundaria);
+  border-radius: var(--raio-card);
+  transition: var(--transicao-padrao);
+}
+/* ===== Tabela e lista ===== */
+ul { list-style-type: square; padding-left: 1.25rem; }
+.menu, .submenu { list-style-type: none; padding-left: 0; }
+.rolagem { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+caption { padding-bottom: 0.5rem; text-align: left; font-weight: 600; }
+th, td { padding: 0.6rem 0.75rem; text-align: left; border-bottom: 1px solid #d9e2ec; }
+thead th { background: var(--cor-primaria); color: #ffffff; }
+tbody tr:nth-child(even) { background: var(--cor-fundo); }
+.numero { text-align: right; }
+
+canvas {
+  display: block;
+  background: #ffffff;
+  border: 1px solid #d9e2ec;
+  border-radius: 8px;
+}
+
+.rodape {
+  padding: 1rem 1.5rem;
+  background: var(--cor-primaria);
+  color: #ffffff;
+  text-align: center;
+}
+.rodape a:link, .rodape a:visited { color: #ffffff; }
+
