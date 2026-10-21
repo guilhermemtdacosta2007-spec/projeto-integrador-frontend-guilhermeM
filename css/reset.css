@@ -1,1 +1,18 @@
-/* reset.css - criado na Aula 2; será preenchido na Aula 6 */
+/* Aula 6 - reset: box-sizing global e sem margem/padding padrão no body */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+img,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
