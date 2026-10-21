@@ -11,6 +11,15 @@
 <body>
   <header class="topo">
     <div class="marca">
+      <!-- AULA 5: SVG inline com viewBox e nome acessível.
+           Observação: ao redimensionar a janela, o SVG continua nítido porque é vetorial
+           (confirme você mesmo(a) e ajuste este comentário com o que viu). -->
+      <svg class="logo" viewBox="0 0 48 48" width="40" height="40" role="img" aria-labelledby="logo-titulo">
+        <title id="logo-titulo">Logotipo do DataLab: três barras crescentes</title>
+        <rect x="6" y="26" width="9" height="16" rx="2" fill="#ffffff"/>
+        <rect x="19" y="16" width="9" height="26" rx="2" fill="#ff8c00"/>
+        <rect x="32" y="6" width="9" height="36" rx="2" fill="#ffffff"/>
+      </svg>
       <h1 id="titulo-principal">DataLab Vendas</h1>
     </div>
 
@@ -67,6 +76,15 @@
           </tbody>
         </table>
       </div>
+    </section>
+
+    <section id="graficos">
+      <h2>Gráfico animado</h2>
+      <!-- AULA 5: Canvas com texto de fallback real entre as tags -->
+      <canvas id="grafico-vendas" width="560" height="300">
+        Gráfico de barras com as vendas do mês: mouse sem fio 120, teclado mecânico 48, headset 33,
+        monitor 15, caixa de som 8 e webcam 0.
+      </canvas>
     </section>
 
     <section id="midia">
@@ -141,6 +159,7 @@
     <p>DataLab Vendas - Projeto Integrador de Front-end. <a href="#inicio">Voltar ao topo</a></p>
   </footer>
 
+  <script src="js/grafico.js" defer></script>
   <script src="js/midia.js" defer></script>
 </body>
 </html>
