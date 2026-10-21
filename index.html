@@ -9,14 +9,78 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1>DataLab Vendas</h1>
-  <p>O DataLab Vendas mostra, com um exemplo de loja de periféricos, as etapas básicas de uma análise de dados.</p>
-  <ul>
+  <!--
+    AULA 8 - Diagnóstico de empilhamento (confirme no DevTools, painel Elements/Layout):
+    o dropdown aparecia atrás dos .card porque o card, ao receber :hover, usa transform
+    e cria um contexto de empilhamento próprio. O header sticky com z-index: 10 cria um
+    contexto acima dos cards, e o dropdown (filho do header) fica por cima de todos.
+  -->
+  <header class="topo">
+    <div class="marca">
+      <!-- AULA 5: SVG inline com viewBox e nome acessível.
+           Observação: ao redimensionar a janela, o SVG continua nítido porque é vetorial
+           (confirme você mesmo(a) e ajuste este comentário com o que viu). -->
+      <svg class="logo" viewBox="0 0 48 48" width="40" height="40" role="img" aria-labelledby="logo-titulo">
+        <title id="logo-titulo">Logotipo do DataLab: três barras crescentes</title>
+        <rect x="6" y="26" width="9" height="16" rx="2" fill="#ffffff"/>
+        <rect x="19" y="16" width="9" height="26" rx="2" fill="#ff8c00"/>
+        <rect x="32" y="6" width="9" height="36" rx="2" fill="#ffffff"/>
+      </svg>
+      <h1 id="titulo-principal">DataLab Vendas</h1>
+    </div>
+
+    <!-- AULA 8: botão hambúrguer só estrutural (sem clique ainda) -->
+    <button class="botao-menu" type="button" aria-label="Abrir menu de navegação" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav aria-label="Navegação principal">
+      <ul class="menu">
+        <li><a class="ativo" href="#inicio" aria-current="location">Início</a></li>
+        <li><a href="#dados">Dados</a></li>
+        <li class="dropdown">
+          <a href="#graficos">Análises</a>
+          <ul class="submenu">
+            <li><a href="#graficos">Gráfico animado</a></li>
+            <li><a href="#midia">Vídeo</a></li>
+            <li><a href="#analise">Analisador</a></li>
+          </ul>
+        </li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- AULA 3: um único <main>, seções com h2 sem pular níveis -->
+  <main>
+    <section id="inicio">
+      <h2>O que é o DataLab</h2>
+      <p class="destaque">Dados só têm valor quando alguém os transforma em decisão.</p>
+      <p>O DataLab Vendas mostra, com um exemplo de loja de periféricos, as etapas básicas de uma análise de dados.</p>
+      <ul>
         <li>Organizar os dados em tabelas</li>
         <li>Classificar cada item por critério</li>
         <li>Resumir e comunicar o resultado</li>
       </ul>
-  <table>
+      <img src="assets/images/capa.png" width="640" height="320"
+           alt="Gráfico de barras com seis produtos, em que o mouse sem fio tem a barra mais alta, em laranja">
+      <p>Saiba mais sobre o tema na <a href="https://pt.wikipedia.org/wiki/An%C3%A1lise_de_dados" target="_blank" rel="noopener noreferrer">Wikipédia (análise de dados)</a>.</p>
+    </section>
+
+    <section id="etapas">
+      <h2>As etapas da análise</h2>
+      <div class="grade-cards">
+        <article class="card"><h3>1. Coletar</h3><p>Reunir os dados brutos de vendas.</p></article>
+        <article class="card"><h3>2. Limpar</h3><p>Remover erros e padronizar nomes.</p></article>
+        <article class="card"><h3>3. Analisar</h3><p>Classificar, somar e comparar.</p></article>
+        <article class="card"><h3>4. Comunicar</h3><p>Mostrar o resultado em gráficos.</p></article>
+      </div>
+    </section>
+
+    <section id="dados">
+      <h2>Dados de vendas do mês</h2>
+      <div class="rolagem">
+        <table>
           <caption>Unidades vendidas por produto</caption>
           <thead>
             <tr><th scope="col">Produto</th><th scope="col">Categoria</th><th scope="col" class="numero">Vendas</th></tr>
@@ -30,8 +94,99 @@
             <tr><td>Webcam HD</td><td>Periféricos</td><td class="numero">0</td></tr>
           </tbody>
         </table>
-  <p>Saiba mais na <a href="https://pt.wikipedia.org/wiki/An%C3%A1lise_de_dados" target="_blank" rel="noopener noreferrer">Wikipédia (análise de dados)</a>.</p>
-  <img src="assets/images/capa.png" width="640" height="320"
-           alt="Gráfico de barras com seis produtos, em que o mouse sem fio tem a barra mais alta, em laranja">
+      </div>
+    </section>
+
+    <section id="graficos">
+      <h2>Gráfico animado</h2>
+      <!-- AULA 5: Canvas com texto de fallback real entre as tags -->
+      <canvas id="grafico-vendas" width="560" height="300">
+        Gráfico de barras com as vendas do mês: mouse sem fio 120, teclado mecânico 48, headset 33,
+        monitor 15, caixa de som 8 e webcam 0.
+      </canvas>
+    </section>
+
+    <section id="midia">
+      <h2>Vídeo demonstrativo</h2>
+      <!-- AULA 4: preload="metadata" porque o vídeo está no meio da página: carrega só duração
+           e dimensões, sem gastar dados de quem não for assistir. Ordem dos <source>: WebM
+           (menor, mais eficiente) primeiro e MP4 como fallback universal. -->
+      <video id="video-demo" controls preload="metadata" poster="assets/images/poster.png" width="640" height="360">
+        <source src="assets/media/demo.webm" type="video/webm">
+        <source src="assets/media/demo.mp4" type="video/mp4">
+        <track kind="subtitles" src="assets/media/legendas-pt.vtt" srclang="pt" label="Português" default>
+        <p>Seu navegador não suporta vídeo. <a href="assets/media/demo.mp4">Baixe o arquivo MP4</a>.</p>
+      </video>
+      <p><small id="aviso-formato"></small></p>
+    </section>
+
+    <section id="analise">
+      <h2>Analisador de vendas</h2>
+      <p>Clique no botão, informe o limite de alta saída e veja a classificação no console (F12) e aqui.</p>
+      <button id="botao-analise" class="botao botao-primario" type="button">Rodar análise</button>
+      <p id="resultado-analise" class="resultado" aria-live="polite">O resultado aparecerá aqui.</p>
+    </section>
+
+    <section id="contato">
+      <h2>Peça uma análise</h2>
+      <form action="#" method="post">
+        <fieldset>
+          <legend>Seus dados</legend>
+          <div class="campo">
+            <label for="nome">Nome completo</label>
+            <input type="text" id="nome" name="nome" required minlength="3" pattern="[A-Za-zÀ-ÿ ]{3,}" title="Use apenas letras e espaços (mínimo 3)" autocomplete="name">
+          </div>
+          <div class="campo">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Sobre os dados</legend>
+          <div class="campo">
+            <label for="tipo-dado">Tipo de dado</label>
+            <select id="tipo-dado" name="tipo-dado">
+              <option value="vendas">Vendas</option>
+              <option value="clientes">Clientes</option>
+              <option value="estoque">Estoque</option>
+              <option value="outro">Outro</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="linhas">Quantidade de linhas</label>
+            <input type="number" id="linhas" name="linhas" min="1" max="1000000" value="100">
+          </div>
+          <div class="campo">
+            <label for="prazo">Prazo desejado</label>
+            <input type="date" id="prazo" name="prazo">
+          </div>
+          <div class="campo">
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" rows="3"></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Formato da entrega</legend>
+          <label><input type="radio" name="formato" value="resumo" checked> Resumo</label>
+          <label><input type="radio" name="formato" value="completo"> Relatório completo</label>
+        </fieldset>
+
+        <div class="acoes">
+          <button class="botao botao-primario" type="submit">Enviar pedido</button>
+          <button class="botao botao-secundario" type="reset">Limpar</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p>DataLab Vendas - Projeto Integrador de Front-end. <a href="#inicio">Voltar ao topo</a></p>
+  </footer>
+
+  <script src="js/grafico.js" defer></script>
+  <script src="js/midia.js" defer></script>
+  <script src="js/logica.js" defer></script>
 </body>
 </html>
