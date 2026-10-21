@@ -182,6 +182,47 @@ canvas {
   border-radius: 8px;
 }
 
+/* ===== AULA 9 (guia): botões e formulários ===== */
+.botao {
+  padding: 0.7rem 1.4rem;
+  font: inherit;
+  font-size: 1rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transicao-padrao);
+}
+.botao:active { transform: translateY(1px); }
+/* Hierarquia: ação primária preenchida e em negrito; secundária só com contorno */
+.botao-primario {
+  background: var(--cor-primaria);
+  border-color: var(--cor-primaria);
+  color: #ffffff;
+  font-weight: 700;
+}
+.botao-primario:hover { background: var(--cor-secundaria); border-color: var(--cor-secundaria); }
+.botao-secundario {
+  background: transparent;
+  border-color: var(--cor-primaria);
+  color: var(--cor-primaria);
+}
+.botao-secundario:hover { background: #e3edf7; }
+
+fieldset { margin: 0 0 1rem; padding: 1rem; border: 1px solid #c5d3e0; border-radius: 8px; }
+legend { padding: 0 0.5rem; font-weight: 700; }
+.campo { display: flex; flex-direction: column; gap: 0.25rem; margin-bottom: 0.9rem; }
+input, select, textarea {
+  padding: 0.55rem 0.7rem;
+  font: inherit;
+  font-size: 1rem;
+  background: #ffffff;
+  border: 1px solid #8aa0b5;
+  border-radius: 6px;
+}
+input[type="radio"] { margin-right: 0.35rem; }
+fieldset > label { margin-right: 1.25rem; }
+.acoes { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
 .rodape {
   padding: 1rem 1.5rem;
   background: var(--cor-primaria);
