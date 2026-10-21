@@ -1,1 +1,37 @@
-
+<!DOCTYPE html>
+<!-- AULA 2: DOCTYPE, lang, charset, viewport e title; caminhos sempre relativos -->
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DataLab Vendas - análise de dados para iniciantes</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h1>DataLab Vendas</h1>
+  <p>O DataLab Vendas mostra, com um exemplo de loja de periféricos, as etapas básicas de uma análise de dados.</p>
+  <ul>
+        <li>Organizar os dados em tabelas</li>
+        <li>Classificar cada item por critério</li>
+        <li>Resumir e comunicar o resultado</li>
+      </ul>
+  <table>
+          <caption>Unidades vendidas por produto</caption>
+          <thead>
+            <tr><th scope="col">Produto</th><th scope="col">Categoria</th><th scope="col" class="numero">Vendas</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Teclado mecânico</td><td>Periféricos</td><td class="numero">48</td></tr>
+            <tr><td>Mouse sem fio</td><td>Periféricos</td><td class="numero">120</td></tr>
+            <tr><td>Monitor 24"</td><td>Telas</td><td class="numero">15</td></tr>
+            <tr><td>Headset</td><td>Áudio</td><td class="numero">33</td></tr>
+            <tr><td>Caixa de som</td><td>Áudio</td><td class="numero">8</td></tr>
+            <tr><td>Webcam HD</td><td>Periféricos</td><td class="numero">0</td></tr>
+          </tbody>
+        </table>
+  <p>Saiba mais na <a href="https://pt.wikipedia.org/wiki/An%C3%A1lise_de_dados" target="_blank" rel="noopener noreferrer">Wikipédia (análise de dados)</a>.</p>
+  <img src="assets/images/capa.png" width="640" height="320"
+           alt="Gráfico de barras com seis produtos, em que o mouse sem fio tem a barra mais alta, em laranja">
+</body>
+</html>
