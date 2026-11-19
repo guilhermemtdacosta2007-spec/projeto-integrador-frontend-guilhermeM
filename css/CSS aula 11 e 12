@@ -1,0 +1,114 @@
+/* [AULA 11] Desempenho e faixas de vendas aplicadas via JS */
+.desempenho {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* [AULA 11] Cores de borda por faixa de volume */
+.faixa-destaque {
+  border-color: var(--cor-primaria, #107c41);
+}
+
+.faixa-estavel {
+  border-color: var(--cor-acento, #2563eb);
+}
+
+.faixa-atencao {
+  border-color: #b45309;
+}
+
+.faixa-critico {
+  border-color: #c0392b;
+}
+
+/* [AULA 11] Cores do texto de desempenho por faixa */
+.faixa-destaque.desempenho {
+  color: #107c41;
+}
+
+.faixa-estavel.desempenho {
+  color: #1d4ed8;
+}
+
+.faixa-atencao.desempenho {
+  color: #b45309;
+}
+
+.faixa-critico.desempenho {
+  color: #c0392b;
+}
+
+/* [AULA 11] Painel de resumo gerado a partir dos dados */
+.resumo-analise {
+  background: var(--cor-acento-claro, #eff6ff);
+  border: 1px solid var(--cor-acento, #93c5fd);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.resumo-analise h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+
+.resumo-analise ul {
+  list-style: none;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+/* [AULA 12] Posicionamento do card para comportar o botão de favoritar */
+.card-produto {
+  position: relative;
+}
+
+/* [AULA 12] Botão de favoritar e feedback visual de estado/foco */
+.botao-favoritar {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.botao-favoritar:hover {
+  color: #111827;
+}
+
+/* [AULA 12] Estado pressionado sincronizado com aria-pressed */
+.botao-favoritar[aria-pressed="true"] {
+  color: #c0392b;
+}
+
+/* [AULA 9 / AULA 12] Foco visível na navegação por teclado */
+.botao-favoritar:focus-visible {
+  outline: 2px solid var(--cor-primaria, #107c41);
+  outline-offset: 2px;
+}
+
+/* [AULA 12] Barra de busca, filtro e ação de adicionar */
+.ferramentas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.ferramentas .campo {
+  margin-bottom: 0;
+  flex: 1 1 200px;
+}
+
+/* [AULA 12] Contador de itens exibidos */
+.contador {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
