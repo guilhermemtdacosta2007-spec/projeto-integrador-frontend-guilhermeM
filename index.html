@@ -1,192 +1,201 @@
 <!DOCTYPE html>
-<!-- AULA 2: DOCTYPE, lang, charset, viewport e title; caminhos sempre relativos -->
+<!-- [AULA 1-2] Documento HTML base com idioma, codificação, viewport e título -->
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DataLab Vendas - análise de dados para iniciantes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataLab Vendas — Análise de Periféricos</title>
+
+  <!-- [AULA 6-9] Folhas de estilo externas (reset, layout, navegação, botões e formulário) -->
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- [AULA 11-12] Scripts carregados com defer após a montagem do DOM -->
+  <script src="js/main.js" defer></script>
+  <script src="js/catalogo-vendas.js" defer></script>
 </head>
 <body>
-  <!--
-    AULA 8 - Diagnóstico de empilhamento (confirme no DevTools, painel Elements/Layout):
-    o dropdown aparecia atrás dos .card porque o card, ao receber :hover, usa transform
-    e cria um contexto de empilhamento próprio. O header sticky com z-index: 10 cria um
-    contexto acima dos cards, e o dropdown (filho do header) fica por cima de todos.
-  -->
+  <!-- [AULA 3 / AULA 8] Cabeçalho semântico com barra de navegação e botão hambúrguer -->
   <header class="topo">
-    <div class="marca">
-      <!-- AULA 5: SVG inline com viewBox e nome acessível.
-           Observação: ao redimensionar a janela, o SVG continua nítido porque é vetorial
-           (confirme você mesmo(a) e ajuste este comentário com o que viu). -->
-      <svg class="logo" viewBox="0 0 48 48" width="40" height="40" role="img" aria-labelledby="logo-titulo">
-        <title id="logo-titulo">Logotipo do DataLab: três barras crescentes</title>
-        <rect x="6" y="26" width="9" height="16" rx="2" fill="#ffffff"/>
-        <rect x="19" y="16" width="9" height="26" rx="2" fill="#ff8c00"/>
-        <rect x="32" y="6" width="9" height="36" rx="2" fill="#ffffff"/>
-      </svg>
-      <h1 id="titulo-principal">DataLab Vendas</h1>
+    <div class="topo-conteudo">
+      <!-- [AULA 5] Logotipo em SVG inline com viewBox e título acessível -->
+      <a href="#inicio" class="marca">
+        <svg class="logo-svg" width="32" height="32" viewBox="0 0 32 32" role="img" aria-labelledby="titulo-logo">
+          <title id="titulo-logo">Logo DataLab Vendas</title>
+          <rect x="4" y="16" width="6" height="12" rx="1"></rect>
+          <rect x="13" y="10" width="6" height="18" rx="1"></rect>
+          <rect x="22" y="4" width="6" height="24" rx="1"></rect>
+        </svg>
+        <span>DataLab Vendas</span>
+      </a>
+
+      <!-- [AULA 8 / AULA 10 / AULA 12] Botão hambúrguer com ARIA controlado por JS e tecla Escape -->
+      <button type="button" class="menu-hamburguer" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+        <span class="barra"></span>
+        <span class="barra"></span>
+        <span class="barra"></span>
+      </button>
+
+      <!-- [AULA 8] Menu principal com item ativo (.ativo) -->
+      <nav id="menu-principal" class="menu" aria-label="Navegação principal">
+        <a href="#catalogo-produtos" class="ativo">Catálogo</a>
+        <a href="#demo-event-loop">Event Loop</a>
+        <a href="#secao-video">Relatório em Vídeo</a>
+        <a href="#secao-formulario">Solicitar Análise</a>
+      </nav>
     </div>
-
-    <!-- AULA 8: botão hambúrguer só estrutural (sem clique ainda) -->
-    <button class="botao-menu" type="button" aria-label="Abrir menu de navegação" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-
-    <nav aria-label="Navegação principal">
-      <ul class="menu">
-        <li><a class="ativo" href="#inicio" aria-current="location">Início</a></li>
-        <li><a href="#dados">Dados</a></li>
-        <li class="dropdown">
-          <a href="#graficos">Análises</a>
-          <ul class="submenu">
-            <li><a href="#graficos">Gráfico animado</a></li>
-            <li><a href="#midia">Vídeo</a></li>
-            <li><a href="#analise">Analisador</a></li>
-          </ul>
-        </li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
-    </nav>
   </header>
 
-  <!-- AULA 3: um único <main>, seções com h2 sem pular níveis -->
-  <main>
-    <section id="inicio">
-      <h2>O que é o DataLab</h2>
-      <p class="destaque">Dados só têm valor quando alguém os transforma em decisão.</p>
-      <p>O DataLab Vendas mostra, com um exemplo de loja de periféricos, as etapas básicas de uma análise de dados.</p>
-      <ul>
-        <li>Organizar os dados em tabelas</li>
-        <li>Classificar cada item por critério</li>
-        <li>Resumir e comunicar o resultado</li>
-      </ul>
-      <img src="assets/images/capa.png" width="640" height="320"
-           alt="Gráfico de barras com seis produtos, em que o mouse sem fio tem a barra mais alta, em laranja">
-      <p>Saiba mais sobre o tema na <a href="https://pt.wikipedia.org/wiki/An%C3%A1lise_de_dados" target="_blank" rel="noopener noreferrer">Wikipédia (análise de dados)</a>.</p>
+  <!-- [AULA 3] Conteúdo principal único da página -->
+  <main id="inicio" class="conteudo">
+    <!-- [AULA 1-2 / AULA 3] Seção inicial com título, parágrafo descritivo e link externo -->
+    <section class="introducao" aria-labelledby="titulo-principal">
+      <h1 id="titulo-principal">Painel de Análise de Vendas de Periféricos</h1>
+      <p>Acompanhamento de volume de vendas, receita estimada e desempenho por categoria de produtos.</p>
+      <p>
+        <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer">
+          Referência Web MDN
+        </a>
+      </p>
     </section>
 
-    <section id="etapas">
-      <h2>As etapas da análise</h2>
-      <div class="grade-cards">
-        <article class="card"><h3>1. Coletar</h3><p>Reunir os dados brutos de vendas.</p></article>
-        <article class="card"><h3>2. Limpar</h3><p>Remover erros e padronizar nomes.</p></article>
-        <article class="card"><h3>3. Analisar</h3><p>Classificar, somar e comparar.</p></article>
-        <article class="card"><h3>4. Comunicar</h3><p>Mostrar o resultado em gráficos.</p></article>
+    <!-- [AULA 11 / AULA 12] Catálogo de periféricos com dados em data-*, busca, filtro e favoritos -->
+    <section id="catalogo-produtos" aria-labelledby="titulo-catalogo">
+      <h2 id="titulo-catalogo">Catálogo de Periféricos</h2>
+
+      <!-- [AULA 12] Controles de busca, filtro por categoria, adição de item e contador aria-live -->
+      <div class="ferramentas">
+        <div class="campo">
+          <label for="campo-busca">Buscar por produto</label>
+          <input type="search" id="campo-busca" autocomplete="off">
+        </div>
+        <div class="campo">
+          <label for="filtro-categoria">Categoria</label>
+          <select id="filtro-categoria">
+            <option value="">Todas</option>
+            <option value="Teclados">Teclados</option>
+            <option value="Mouses">Mouses</option>
+            <option value="Áudio">Áudio</option>
+            <option value="Monitores">Monitores</option>
+            <option value="Acessórios">Acessórios</option>
+          </select>
+        </div>
+        <button type="button" id="btn-adicionar-produto" class="botao">
+          Adicionar produto
+        </button>
+      </div>
+      <p id="contador-exibidos" class="contador" aria-live="polite"></p>
+
+      <!-- [AULA 7 / AULA 11 / AULA 12] Grade de cards com atributos data-* lidos pelo JS -->
+      <div class="grade-produtos">
+        <article class="card-produto" data-produto="Teclado Mecânico TKL" data-categoria="Teclados" data-preco="320" data-unidades="45" data-nota-avaliacao="4.8">
+          <h3>Teclado Mecânico TKL</h3>
+          <p class="meta">Teclados · R$ 320,00</p>
+          <p class="avaliacao">Avaliação: <strong>4.8</strong></p>
+        </article>
+
+        <article class="card-produto" data-produto="Mouse Gamer Sem Fio" data-categoria="Mouses" data-preco="250" data-unidades="62" data-nota-avaliacao="4.6">
+          <h3>Mouse Gamer Sem Fio</h3>
+          <p class="meta">Mouses · R$ 250,00</p>
+          <p class="avaliacao">Avaliação: <strong>4.6</strong></p>
+        </article>
+
+        <article class="card-produto" data-produto="Headset Studio USB" data-categoria="Áudio" data-preco="290" data-unidades="18" data-nota-avaliacao="3.9">
+          <h3>Headset Studio USB</h3>
+          <p class="meta">Áudio · R$ 290,00</p>
+          <p class="avaliacao">Avaliação: <strong>3.9</strong></p>
+        </article>
       </div>
     </section>
 
-    <section id="dados">
-      <h2>Dados de vendas do mês</h2>
-      <div class="rolagem">
-        <table>
-          <caption>Unidades vendidas por produto</caption>
-          <thead>
-            <tr><th scope="col">Produto</th><th scope="col">Categoria</th><th scope="col" class="numero">Vendas</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Teclado mecânico</td><td>Periféricos</td><td class="numero">48</td></tr>
-            <tr><td>Mouse sem fio</td><td>Periféricos</td><td class="numero">120</td></tr>
-            <tr><td>Monitor 24"</td><td>Telas</td><td class="numero">15</td></tr>
-            <tr><td>Headset</td><td>Áudio</td><td class="numero">33</td></tr>
-            <tr><td>Caixa de som</td><td>Áudio</td><td class="numero">8</td></tr>
-            <tr><td>Webcam HD</td><td>Periféricos</td><td class="numero">0</td></tr>
-          </tbody>
-        </table>
-      </div>
+    <!-- [AULA 12] Seção interativa para testar ordem do Event Loop e bloqueio da pilha -->
+    <section id="demo-event-loop" class="card" aria-labelledby="demo-event-loop-titulo">
+      <h2 id="demo-event-loop-titulo">Demonstração: ordem de execução</h2>
+      <p>O primeiro botão mostra em que ordem o JavaScript executa código síncrono, promessas e temporizadores. O segundo ocupa a pilha por 3 segundos.</p>
+      <p>
+        <button type="button" id="btn-ordem" class="botao">Mostrar a ordem</button>
+        <button type="button" id="btn-travar" class="botao">Travar por 3 s</button>
+      </p>
+      <p id="saida-ordem" aria-live="polite"></p>
     </section>
 
-    <section id="graficos">
-      <h2>Gráfico animado</h2>
-      <!-- AULA 5: Canvas com texto de fallback real entre as tags -->
-      <canvas id="grafico-vendas" width="560" height="300">
-        Gráfico de barras com as vendas do mês: mouse sem fio 120, teclado mecânico 48, headset 33,
-        monitor 15, caixa de som 8 e webcam 0.
+    <!-- [AULA 5] Gráfico em Canvas com conteúdo alternativo entre as tags -->
+    <section id="secao-grafico" aria-labelledby="titulo-grafico">
+      <h2 id="titulo-grafico">Gráfico de Desempenho</h2>
+      <canvas id="grafico-vendas" width="600" height="260">
+        Gráfico de barras com o desempenho de vendas por categoria de periféricos.
       </canvas>
     </section>
 
-    <section id="midia">
-      <h2>Vídeo demonstrativo</h2>
-      <!-- AULA 4: preload="metadata" porque o vídeo está no meio da página: carrega só duração
-           e dimensões, sem gastar dados de quem não for assistir. Ordem dos <source>: WebM
-           (menor, mais eficiente) primeiro e MP4 como fallback universal. -->
-      <video id="video-demo" controls preload="metadata" poster="assets/images/poster.png" width="640" height="360">
-        <source src="assets/media/demo.webm" type="video/webm">
-        <source src="assets/media/demo.mp4" type="video/mp4">
-        <track kind="subtitles" src="assets/media/legendas-pt.vtt" srclang="pt" label="Português" default>
-        <p>Seu navegador não suporta vídeo. <a href="assets/media/demo.mp4">Baixe o arquivo MP4</a>.</p>
+    <!-- [AULA 4] Multimídia com múltiplos formatos, poster, legendas e preload justificado -->
+    <section id="secao-video" aria-labelledby="titulo-video">
+      <h2 id="titulo-video">Apresentação do Painel</h2>
+      <!-- preload="metadata" evita baixar o vídeo inteiro antes de o usuário reproduzir -->
+      <video controls preload="metadata" poster="assets/images/capa.png" width="640">
+        <source src="assets/video/apresentacao.webm" type="video/webm">
+        <source src="assets/video/apresentacao.mp4" type="video/mp4">
+        <track kind="captions" src="assets/video/legendas-pt.vtt" srclang="pt" label="Português" default>
+        Seu navegador não suporta reprodução de vídeo HTML5.
       </video>
-      <p><small id="aviso-formato"></small></p>
     </section>
 
-    <section id="analise">
-      <h2>Analisador de vendas</h2>
-      <p>Clique no botão, informe o limite de alta saída e veja a classificação no console (F12) e aqui.</p>
-      <button id="botao-analise" class="botao botao-primario" type="button">Rodar análise</button>
-      <p id="resultado-analise" class="resultado" aria-live="polite">O resultado aparecerá aqui.</p>
-    </section>
-
-    <section id="contato">
-      <h2>Peça uma análise</h2>
-      <form action="#" method="post">
+    <!-- [AULA 3 / AULA 9] Formulário semântico com fieldset, legend, labels e validação nativa -->
+    <section id="secao-formulario" aria-labelledby="titulo-formulario">
+      <h2 id="titulo-formulario">Solicitar Nova Análise de Dados</h2>
+      <form id="form-analise">
         <fieldset>
-          <legend>Seus dados</legend>
-          <div class="campo">
-            <label for="nome">Nome completo</label>
-            <input type="text" id="nome" name="nome" required minlength="3" pattern="[A-Za-zÀ-ÿ ]{3,}" title="Use apenas letras e espaços (mínimo 3)" autocomplete="name">
-          </div>
-          <div class="campo">
-            <label for="email">E-mail</label>
-            <input type="email" id="email" name="email" required autocomplete="email">
-          </div>
-        </fieldset>
+          <legend>Informações da Solicitação</legend>
 
-        <fieldset>
-          <legend>Sobre os dados</legend>
           <div class="campo">
-            <label for="tipo-dado">Tipo de dado</label>
-            <select id="tipo-dado" name="tipo-dado">
-              <option value="vendas">Vendas</option>
-              <option value="clientes">Clientes</option>
-              <option value="estoque">Estoque</option>
-              <option value="outro">Outro</option>
+            <label for="nome-solicitante">Nome completo</label>
+            <input type="text" id="nome-solicitante" name="nomeSolicitante" required pattern="[A-Za-zÀ-ÿ\s]{2,80}">
+          </div>
+
+          <div class="campo">
+            <label for="email-solicitante">E-mail corporativo</label>
+            <input type="email" id="email-solicitante" name="emailSolicitante" required>
+          </div>
+
+          <div class="campo">
+            <label for="categoria-analise">Categoria principal</label>
+            <select id="categoria-analise" name="categoriaAnalise" required>
+              <option value="">Selecione...</option>
+              <option value="Teclados">Teclados</option>
+              <option value="Mouses">Mouses</option>
+              <option value="Áudio">Áudio</option>
+              <option value="Monitores">Monitores</option>
+              <option value="Acessórios">Acessórios</option>
             </select>
           </div>
+
           <div class="campo">
-            <label for="linhas">Quantidade de linhas</label>
-            <input type="number" id="linhas" name="linhas" min="1" max="1000000" value="100">
+            <label for="meta-unidades">Meta de unidades</label>
+            <input type="number" id="meta-unidades" name="metaUnidades" min="1" max="10000" required>
           </div>
+
           <div class="campo">
-            <label for="prazo">Prazo desejado</label>
-            <input type="date" id="prazo" name="prazo">
+            <label for="data-referencia">Data de referência</label>
+            <input type="date" id="data-referencia" name="dataReferencia" required>
           </div>
+
           <div class="campo">
-            <label for="mensagem">Mensagem</label>
-            <textarea id="mensagem" name="mensagem" rows="3"></textarea>
+            <label for="observacoes">Observações da análise</label>
+            <textarea id="observacoes" name="observacoes" rows="3"></textarea>
           </div>
         </fieldset>
 
-        <fieldset>
-          <legend>Formato da entrega</legend>
-          <label><input type="radio" name="formato" value="resumo" checked> Resumo</label>
-          <label><input type="radio" name="formato" value="completo"> Relatório completo</label>
-        </fieldset>
-
-        <div class="acoes">
-          <button class="botao botao-primario" type="submit">Enviar pedido</button>
-          <button class="botao botao-secundario" type="reset">Limpar</button>
+        <!-- [AULA 9] Hierarquia de botões primário e secundário -->
+        <div class="acoes-formulario">
+          <button type="submit" class="botao primario">Enviar solicitação</button>
+          <button type="reset" class="botao secundario">Limpar campos</button>
         </div>
       </form>
     </section>
   </main>
 
+  <!-- [AULA 3] Rodapé semântico -->
   <footer class="rodape">
-    <p>DataLab Vendas - Projeto Integrador de Front-end. <a href="#inicio">Voltar ao topo</a></p>
+    <p>DataLab Vendas — Projeto Integrador de Desenvolvimento Front-end para Web.</p>
   </footer>
-
-  <script src="js/grafico.js" defer></script>
-  <script src="js/midia.js" defer></script>
-  <script src="js/logica.js" defer></script>
 </body>
 </html>
